@@ -1,0 +1,24 @@
+{
+  "name": "smartdoor_nfc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alsragy/SmartDoor_NFC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Alsragy/SmartDoor_NFC/issues"
+  },
+  "homepage": "https://github.com/Alsragy/SmartDoor_NFC#readme",
+  "dependencies": {
+    "mqtt": "^5.16.1"
+  }
+}
