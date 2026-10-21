@@ -1,0 +1,999 @@
+{
+  "pbtResults": {
+    "3.2 Tulis property test determinisme derivasi kunci": {
+      "status": "passed",
+      "lastRunTimestamp": 1792606399624
+    },
+    "7.3 Tulis property test pengosongan antrean ber-ACK": {
+      "status": "passed",
+      "lastRunTimestamp": 1792606854258
+    },
+    "8.5 Tulis property test deteksi tamper": {
+      "status": "passed",
+      "lastRunTimestamp": 1792606975667
+    },
+    "8.6 Tulis property test alarm door-ajar": {
+      "status": "passed",
+      "lastRunTimestamp": 1792606983321
+    },
+    "10.2 Tulis property test autentikasi API_Key": {
+      "status": "passed",
+      "lastRunTimestamp": 1792606998387
+    },
+    "11.3 Tulis property test idempotensi ingest": {
+      "status": "passed",
+      "lastRunTimestamp": 1792607276622
+    }
+  },
+  "executionHistory": {
+    "1. Siapkan struktur proyek, tooling, dan dependensi server": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077560
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605096901
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605299136
+      }
+    ],
+    "2.1 Tulis `src/db/schema.sql` dengan tabel `users`, `rooms`, `cards`, `devices`, `access_logs`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077632
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605307517
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605616250
+      }
+    ],
+    "2.2 Implementasikan `src/db/index.js` (koneksi better-sqlite3 + jalankan migrasi dari `schema.sql`)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077673
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605626340
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605811201
+      }
+    ],
+    "3.1 Tulis `src/services/keyDerivation.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077715
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605627743
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605812727
+      }
+    ],
+    "4.1 Tulis `src/services/cryptoVerify.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077788
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605629201
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605814052
+      }
+    ],
+    "5.1 Tulis `src/services/accessDecision.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077826
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605630076
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605814989
+      }
+    ],
+    "6.1 Tulis `src/services/whitelistVersion.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077867
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606503650
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606712308
+      }
+    ],
+    "7.1 Tulis `src/services/offlineLog.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077915
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605631265
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605816133
+      }
+    ],
+    "8.1 Tulis `src/services/deviceHealth.js` (logika klasifikasi)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077956
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605820974
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606092871
+      }
+    ],
+    "8.3 Tulis `src/services/securityState.js` (state machine brute-force & tamper, logika portabel)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605077995
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605822013
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606093958
+      }
+    ],
+    "9. Checkpoint — Pastikan semua test logika murni lulus": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078063
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607137778
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607142430
+      }
+    ],
+    "10.1 Tulis `src/middleware/apiKey.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078106
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606504797
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606711244
+      }
+    ],
+    "11.1 Tulis `src/services/auditTrail.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078146
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606887553
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607108856
+      }
+    ],
+    "12. Implementasikan MQTT service (topik, konsumer, publisher perintah)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078183
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607158019
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607443936
+      }
+    ],
+    "13. Implementasikan live feed SSE hub": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078220
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607160245
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607441608
+      }
+    ],
+    "14.1 Tulis `src/services/billingScheduler.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078260
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607159410
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607442933
+      }
+    ],
+    "14.2 Tulis `src/routes/revoke.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078298
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607492612
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607896832
+      }
+    ],
+    "15.1 Tulis `src/routes/residents.js`, `src/routes/rooms.js`, `src/routes/cards.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078337
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607494007
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607893549
+      }
+    ],
+    "15.2 Tulis `src/routes/provisioning.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078375
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607495416
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607894430
+      }
+    ],
+    "16.1 Tulis `src/routes/whitelist.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078418
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607496357
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607895955
+      }
+    ],
+    "16.2 Tulis `src/routes/offlineLogs.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078455
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607497479
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607897860
+      }
+    ],
+    "17.1 Tulis `src/routes/devices.js` (health + unlock)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078495
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607910761
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608370945
+      }
+    ],
+    "17.3 Tulis `src/routes/config.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078534
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607912857
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608369540
+      }
+    ],
+    "18. Wiring server: bootstrap aplikasi": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078575
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608380293
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608608985
+      }
+    ],
+    "20. Checkpoint — Pastikan seluruh test & build server lulus": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078617
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608866443
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608871713
+      }
+    ],
+    "21. Scaffolding proyek firmware": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078656
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608880182
+      }
+    ],
+    "22.1 Tulis modul keputusan akses C++ portabel (`firmware/lib/decision/`)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078696
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609178729
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609623561
+      }
+    ],
+    "22.2 Tulis modul whitelist/delta & offline-log C++ portabel": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078736
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609180103
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609625066
+      }
+    ],
+    "22.3 Tulis modul state machine keamanan C++ portabel": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078782
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609180964
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609625700
+      }
+    ],
+    "23. Implementasikan model penjadwalan non-blocking dan watchdog": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078833
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609634550
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610402063
+      }
+    ],
+    "24. Integrasikan penyimpanan LittleFS dan strategi waktu RTC": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078929
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609635422
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610403344
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610449113
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610563552
+      }
+    ],
+    "27.1 Implementasikan klien MQTT firmware": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605078969
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610570133
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621074648
+      }
+    ],
+    "27.2 Implementasikan `syncTask` REST delta-sync & ingest": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605079014
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610570936
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621075540
+      }
+    ],
+    "29. Wiring firmware: integrasi `main.cpp`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605079059
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621080795
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621322625
+      }
+    ],
+    "30. Checkpoint akhir — Pastikan test host firmware & build server lulus": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605079102
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621344513
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621349702
+      }
+    ],
+    "2. Siapkan skema basis data dan lapisan koneksi": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605811241
+      }
+    ],
+    "3. Implementasikan derivasi Diversified_Key": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605812771
+      }
+    ],
+    "4. Implementasikan verifikasi kripto challenge-response (lapisan logika murni bersama)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605814112
+      }
+    ],
+    "5. Implementasikan logika keputusan akses dari whitelist (murni, portabel ke firmware)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605815038
+      }
+    ],
+    "7. Implementasikan serialisasi & idempotensi offline-log": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792605816184
+      }
+    ],
+    "8. Implementasikan klasifikasi kesehatan perangkat dan state machine keamanan (murni)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606094014
+      }
+    ],
+    "2.3 Tulis unit test constraint skema": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606275683
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606487576
+      }
+    ],
+    "3.2 Tulis property test determinisme derivasi kunci": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606277070
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606485135
+      }
+    ],
+    "4.2 Tulis property test verifikasi kripto": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606278033
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606482788
+      }
+    ],
+    "4.3 Tulis property test round-trip AES-128": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606279419
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606483726
+      }
+    ],
+    "5.2 Tulis property test keputusan akses lokal": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606280293
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606486528
+      }
+    ],
+    "10. Implementasikan middleware autentikasi API_Key": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606711311
+      }
+    ],
+    "6. Implementasikan versioning whitelist, hash, dan rekonstruksi delta-sync": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606712371
+      }
+    ],
+    "6.2 Tulis property test rekonstruksi delta-sync": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606718754
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606872226
+      }
+    ],
+    "6.3 Tulis property test pencabutan tepat sasaran (pada lapisan whitelist)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606720152
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606873649
+      }
+    ],
+    "7.2 Tulis property test round-trip serialisasi log": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606721599
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606874549
+      }
+    ],
+    "7.3 Tulis property test pengosongan antrean ber-ACK": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606723004
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606875945
+      }
+    ],
+    "8.2 Tulis property test klasifikasi online/offline": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606723864
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606876924
+      }
+    ],
+    "8.4 Tulis property test deteksi brute-force": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606883071
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607106514
+      }
+    ],
+    "8.5 Tulis property test deteksi tamper": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606883973
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607105557
+      }
+    ],
+    "8.6 Tulis property test alarm door-ajar": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606885410
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607107911
+      }
+    ],
+    "10.2 Tulis property test autentikasi API_Key": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792606886815
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607104434
+      }
+    ],
+    "11. Implementasikan audit trail dan penandaan sync_type": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607108892
+      }
+    ],
+    "11.2 Tulis property test penandaan sync_type": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607155167
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607439199
+      }
+    ],
+    "11.3 Tulis property test idempotensi ingest": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607156625
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607440129
+      }
+    ],
+    "15. Implementasikan endpoint CRUD entitas dan provisioning": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607894474
+      }
+    ],
+    "14. Implementasikan billing-lock scheduler dan pencabutan instan": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607896877
+      }
+    ],
+    "16. Implementasikan endpoint whitelist (penuh + delta) dan ingest offline-log": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607897900
+      }
+    ],
+    "17.2 Tulis `src/routes/ota.js`": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607911956
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608373180
+      }
+    ],
+    "15.3 Tulis unit test binding & provisioning": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792607914021
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608372365
+      }
+    ],
+    "17. Implementasikan endpoint device health, remote unlock, OTA, dan config pintu": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608373226
+      }
+    ],
+    "17.2.1 Tulis property test verifikasi OTA": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608379468
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608609799
+      }
+    ],
+    "19. Tulis integration test alur server end-to-end": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608614879
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792608850351
+      }
+    ],
+    "22. Implementasikan lapisan logika keputusan portabel (dapat diuji di host)": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609625739
+      }
+    ],
+    "22.4 Tulis property/unit test host untuk lapisan logika firmware": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792609633154
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792610401194
+      }
+    ],
+    "27. Implementasikan networking firmware: MQTT dan sinkronisasi REST": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621075605
+      }
+    ],
+    "5.3 Tulis property test status kedaluwarsa": [
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621364040
+      },
+      {
+        "executionId": "1de5c6ea-3818-4942-b0ad-66d0355a6c9e",
+        "chatSessionId": "sess_043cdbe9-c95a-4a1a-bda1-8a36661f2596",
+        "timestamp": 1792621462272
+      }
+    ]
+  }
+}

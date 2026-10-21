@@ -1,10 +1,10 @@
 {
   "name": "smartdoor_nfc",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Smart Door KOS ESP32 — Web server & dashboard (Express + better-sqlite3 + mqtt + SSE)",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest --run"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/Alsragy/SmartDoor_NFC#readme",
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.3.0",
     "mqtt": "^5.16.1"
+  },
+  "devDependencies": {
+    "fast-check": "^4.10.2",
+    "vitest": "^5.0.5"
   }
 }

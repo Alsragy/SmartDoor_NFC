@@ -1,0 +1,16 @@
+{
+  "name": "whitelist",
+  "version": "0.1.0",
+  "description": "Versioning & Hash Kartu untuk Delta Sync portabel (C++17, tanpa dependensi hardware). Port dari src/services/whitelistVersion.js: cardHash/dbHash (SHA-256 kanonik), applyDelta + verifikasi db_hash (Property 6/7). SHA-256 referensi disertakan (sha256.h) agar db_hash dapat dihitung penuh di host; primitif diabstraksikan via Sha256Fn sehingga ESP32 dapat menyuntik mbedtls.",
+  "keywords": ["smart-door", "delta-sync", "whitelist", "sha256", "portable"],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*",
+  "headers": ["whitelist_delta.h", "sha256.h"],
+  "dependencies": {
+    "bblanchon/ArduinoJson": "^7.1.0"
+  },
+  "build": {
+    "flags": ["-std=gnu++17"]
+  }
+}

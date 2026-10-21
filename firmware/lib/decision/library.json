@@ -1,0 +1,13 @@
+{
+  "name": "decision",
+  "version": "0.1.0",
+  "description": "Logika keputusan akses GRANT/DENY + verifikasi challenge-response AES-128 portabel (header-only, tanpa dependensi hardware). Port C++ dari src/services/accessDecision.js & cryptoVerify.js. Dikompilasi sama untuk ESP32 (mbedtls menyuntikkan primitif AES) dan host native (test menyuntikkan AES referensi/fake).",
+  "keywords": ["smart-door", "access-control", "aes-128", "challenge-response", "portable"],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*",
+  "headers": ["access_decision.h", "crypto_verify.h"],
+  "build": {
+    "flags": ["-std=gnu++17"]
+  }
+}

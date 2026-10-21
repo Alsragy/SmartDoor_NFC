@@ -1,0 +1,7 @@
+# PlatformIO build artifacts
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Jangan pernah commit kunci perangkat nyata (hanya device.key.sample yang boleh).
+data/device.key

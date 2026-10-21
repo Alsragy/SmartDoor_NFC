@@ -1,0 +1,16 @@
+{
+  "name": "offline_log",
+  "version": "0.1.0",
+  "description": "Serialisasi & idempotensi Offline_Log_Queue portabel (C++17, tanpa dependensi hardware). Port dari src/services/offlineLog.js: serialize/parse JSONL (Property 8), pruneAcked ber-ACK (Property 9, Req 6.3), dedupeByKey, dan model counter idempotency monotonik (next/peekNext; persistensi LittleFS = Task 24).",
+  "keywords": ["smart-door", "offline-log", "jsonl", "idempotency", "portable"],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*",
+  "headers": ["offline_log.h"],
+  "dependencies": {
+    "bblanchon/ArduinoJson": "^7.1.0"
+  },
+  "build": {
+    "flags": ["-std=gnu++17"]
+  }
+}

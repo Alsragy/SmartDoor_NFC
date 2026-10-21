@@ -1,0 +1,16 @@
+{
+  "device_id": "dev01",
+  "lock_open_duration_s": 5,
+  "door_ajar_timeout_s": 30,
+  "api_key": "SAMPLE_FAKE_API_KEY__replace_in_production",
+  "wifi": {
+    "ssid": "SAMPLE_SSID__replace_in_production",
+    "password": "SAMPLE_FAKE_PASSWORD__replace_in_production"
+  },
+  "mqtt": {
+    "host": "192.168.1.10",
+    "port": 1883,
+    "base_topic": "smartdoor"
+  },
+  "whitelist_url": "http://192.168.1.10:3000/api/devices/dev01/whitelist"
+}
