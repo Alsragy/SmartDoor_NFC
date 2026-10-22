@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Door KOS — Dashboard</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🔐</span>
+      <div>
+        <h1>Smart Door KOS</h1>
+        <p class="subtitle">Dashboard Pengelola</p>
+      </div>
+    </div>
+    <div class="apikey">
+      <label for="apiKey">API Key</label>
+      <input id="apiKey" type="password" placeholder="SMARTDOOR_API_KEY" autocomplete="off" />
+      <button id="saveKey" class="btn btn-ghost" type="button">Simpan</button>
+      <span id="connState" class="pill pill-off">Belum terhubung</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- KARTU RINGKASAN -->
+    <section class="cards-row">
+      <div class="stat">
+        <span class="stat-label">Penghuni</span>
+        <span id="statResidents" class="stat-value">–</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Kamar</span>
+        <span id="statRooms" class="stat-value">–</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Kartu Aktif</span>
+        <span id="statCardsActive" class="stat-value">–</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Pintu Online</span>
+        <span id="statDevicesOnline" class="stat-value">–</span>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- KOLOM KIRI: AKSI OWNER -->
+      <div class="col">
+        <!-- Tambah Penghuni -->
+        <section class="panel">
+          <h2>Tambah Penghuni</h2>
+          <form id="formResident" class="form">
+            <input name="name" placeholder="Nama penghuni" required />
+            <input name="phone" placeholder="No. HP (opsional)" />
+            <button class="btn" type="submit">Tambah Penghuni</button>
+          </form>
+        </section>
+
+        <!-- Tambah Kamar -->
+        <section class="panel">
+          <h2>Tambah Kamar</h2>
+          <form id="formRoom" class="form">
+            <input name="room_no" placeholder="Nomor kamar (mis. A-01)" required />
+            <input name="device_id" placeholder="Device pintu (mis. dev01, opsional)" />
+            <button class="btn" type="submit">Tambah Kamar</button>
+          </form>
+        </section>
+
+        <!-- Provisioning Kartu -->
+        <section class="panel">
+          <h2>Provisioning Kartu NFC</h2>
+          <form id="formProvision" class="form">
+            <input name="uid" placeholder="UID kartu (mis. 04A1B2C3)" required />
+            <div class="row2">
+              <input name="resident_id" type="number" min="1" placeholder="resident_id" required />
+              <input name="room_id" type="number" min="1" placeholder="room_id" required />
+            </div>
+            <input name="expired_at" type="datetime-local" title="Masa aktif (billing-lock)" />
+            <button class="btn" type="submit">Provisioning</button>
+          </form>
+          <p class="hint">Kartu jadi <b>ACTIVE</b> & masuk whitelist pintu. Kosongkan masa aktif untuk tanpa batas.</p>
+        </section>
+      </div>
+
+      <!-- KOLOM TENGAH: DATA -->
+      <div class="col">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Kartu</h2>
+            <button id="refreshCards" class="btn btn-ghost btn-sm" type="button">Muat ulang</button>
+          </div>
+          <table class="table">
+            <thead>
+              <tr><th>UID</th><th>User</th><th>Room</th><th>Status</th><th>Masa aktif</th><th></th></tr>
+            </thead>
+            <tbody id="cardsBody"><tr><td colspan="6" class="empty">Belum ada data</td></tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Pintu (Devices)</h2>
+            <button id="refreshDevices" class="btn btn-ghost btn-sm" type="button">Muat ulang</button>
+          </div>
+          <table class="table">
+            <thead>
+              <tr><th>Device</th><th>Room</th><th>Status</th><th>RSSI</th><th>DB ver</th><th></th></tr>
+            </thead>
+            <tbody id="devicesBody"><tr><td colspan="6" class="empty">Belum ada data</td></tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Penghuni & Kamar</h2>
+            <button id="refreshPeople" class="btn btn-ghost btn-sm" type="button">Muat ulang</button>
+          </div>
+          <div class="row2">
+            <div>
+              <h3 class="mini">Penghuni</h3>
+              <ul id="residentsList" class="list"><li class="empty">–</li></ul>
+            </div>
+            <div>
+              <h3 class="mini">Kamar</h3>
+              <ul id="roomsList" class="list"><li class="empty">–</li></ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- KOLOM KANAN: LIVE FEED -->
+      <div class="col">
+        <section class="panel panel-feed">
+          <div class="panel-head">
+            <h2>Live Feed</h2>
+            <span id="feedState" class="pill pill-off">SSE off</span>
+          </div>
+          <div id="feed" class="feed"><div class="empty">Menunggu koneksi…</div></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
