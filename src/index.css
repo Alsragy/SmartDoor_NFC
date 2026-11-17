@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens "Obsidian Telemetry" (brief_design/obsidian_telemetry/DESIGN.md).
+ * Semua warna, font, skala tipografi, dan glow didefinisikan di sini agar
+ * komponen cukup memakai utilitas semantik (bg-primary, text-headline-md, ...).
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Surfaces */
+  --color-canvas: #0b0f17;
+  --color-surface: #0f131c;
+  --color-surface-container: #111827;
+  --color-surface-card: #1e293b;
+  --color-surface-modal: #0f172a;
+  --color-placeholder: #64748b;
+
+  /* Semantic palette */
+  --color-primary: #10b981;
+  --color-primary-light: #34d399;
+  --color-on-primary: #042f2e;
+  --color-secondary: #06b6d4;
+  --color-secondary-light: #38bdf8;
+  --color-tertiary: #f59e0b;
+  --color-tertiary-light: #fbbf24;
+  --color-critical: #f43f5e;
+  --color-critical-light: #fb7185;
+
+  /* Typography scale */
+  --text-headline-xl: 36px;
+  --text-headline-xl--line-height: 44px;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 700;
+  --text-headline-lg: 28px;
+  --text-headline-lg--line-height: 36px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+  --text-headline-md: 20px;
+  --text-headline-md--line-height: 28px;
+  --text-headline-md--letter-spacing: -0.005em;
+  --text-headline-md--font-weight: 600;
+  --text-headline-sm: 16px;
+  --text-headline-sm--line-height: 24px;
+  --text-headline-sm--font-weight: 600;
+  --text-label-mono-md: 13px;
+  --text-label-mono-md--line-height: 18px;
+  --text-label-mono-md--letter-spacing: 0.02em;
+  --text-label-mono-md--font-weight: 500;
+  --text-label-mono-sm: 11px;
+  --text-label-mono-sm--line-height: 14px;
+  --text-label-mono-sm--letter-spacing: 0.04em;
+  --text-label-mono-sm--font-weight: 500;
+  --text-caption: 11px;
+  --text-caption--line-height: 14px;
+  --text-caption--letter-spacing: 0.02em;
+  --text-caption--font-weight: 500;
+
+  /* Ambient glows (pengganti drop shadow) */
+  --shadow-glow-primary: 0 0 20px -4px rgb(16 185 129 / 0.25);
+  --shadow-glow-critical: 0 0 24px -4px rgb(244 63 94 / 0.35);
+  --shadow-glow-secondary: 0 0 20px -4px rgb(6 182 212 / 0.25);
+  --shadow-glow-tertiary: 0 0 20px -4px rgb(245 158 11 / 0.25);
+  --shadow-modal: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+
+  --animate-fade-in: fade-in 160ms ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--color-canvas);
+    color: #e2e8f0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-canvas);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-card);
+    border-radius: 9999px;
+  }
+}
+
+/* Surface container: tabel utama & panel navigasi */
+@utility panel {
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.06);
+  background-color: var(--color-surface-container);
+}
+
+/* Elevated telemetry card: monitor IoT & kontrol pintu */
+@utility glass-card {
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background-color: rgb(30 41 59 / 0.7);
+  backdrop-filter: blur(12px);
+}
+
+/* Inset panel di dalam kartu */
+@utility inset-well {
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.06);
+  background-color: var(--color-canvas);
+}
+
+/* Label kecil uppercase monospace */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+/* Input & search filter */
+@utility field {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background-color: var(--color-canvas);
+  color: #f1f5f9;
+  outline: none;
+  transition: box-shadow 120ms, border-color 120ms;
+
+  &::placeholder {
+    color: var(--color-placeholder);
+  }
+  &:focus-visible {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 2px var(--color-secondary);
+  }
+  &[aria-invalid='true'] {
+    border-color: var(--color-critical);
+  }
+}
+
+/*
+ * Glyph ikon. Sengaja tidak memakai kelas ".material-symbols-outlined" dari
+ * Google Fonts karena CSS tersebut tidak ber-layer dan akan mengalahkan
+ * utilitas ukuran Tailwind (text-[20px], dst).
+ */
+@utility icon-glyph {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  font-variation-settings: 'FILL' 0, 'wght' 400;
+}
