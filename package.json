@@ -1,24 +1,21 @@
 {
-  "name": "smartdoor_nfc",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "dormchain-admin-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alsragy/SmartDoor_NFC.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Alsragy/SmartDoor_NFC/issues"
-  },
-  "homepage": "https://github.com/Alsragy/SmartDoor_NFC#readme",
   "dependencies": {
-    "mqtt": "^5.16.1"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@vitejs/plugin-react": "^6.3.0",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8"
   }
 }
