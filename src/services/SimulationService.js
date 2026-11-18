@@ -12,6 +12,36 @@ import { createSeedState } from './mockData';
 
 const randomBetween = (min, max) => min + Math.random() * (max - min);
 const pick = (items) => items[Math.floor(Math.random() * items.length)];
+const shortHash = (hash) => `${hash.slice(0, 10)}...`;
+const DIRECTION_LABEL = { in: 'MASUK', out: 'KELUAR' };
+
+// ------------------------------------------------------- terminal logging
+
+const TERMINAL_LOG_ENABLED = import.meta.env.DEV && typeof window !== 'undefined' && typeof fetch === 'function';
+let terminalQueue = Promise.resolve();
+
+/**
+ * Kirim satu baris log ke terminal `npm run dev` (POST /api/terminal-log,
+ * dicetak oleh plugin di vite.config.js). Pengiriman dirantai agar urutan
+ * baris di terminal sama dengan urutan proses. Error ditelan agar UI aman.
+ *
+ * @param {string} logMessage
+ * @param {'success' | 'hashing' | 'process' | 'block' | 'queue' | 'error' | 'info'} [type]
+ */
+export function sendToTerminal(logMessage, type = 'info') {
+  if (!TERMINAL_LOG_ENABLED) return;
+  terminalQueue = terminalQueue
+    .then(() =>
+      fetch('/api/terminal-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: logMessage, type }),
+      }),
+    )
+    .catch(() => {
+      // Log terminal hanya alat bantu dev; kegagalan tidak boleh merusak UI.
+    });
+}
 
 /**
  * Sumber data simulasi: meniru gateway ESP32 Mesh + smart contract Polygon.
@@ -32,6 +62,7 @@ export class SimulationService {
   #trafficTimer = null;
   #pendingTap = null;
   #running = false;
+  #lastBlockHash = generateTxHash();
 
   constructor(initialState = createSeedState()) {
     this.#state = initialState;
@@ -121,6 +152,12 @@ export class SimulationService {
   /** Simulasi saklar internet gateway. */
   setInternet(online) {
     this.#update(() => ({ internetOnline: Boolean(online) }));
+    sendToTerminal(
+      online
+        ? `[Network] Simulasi Internet: ON | Gateway terhubung ke Polygon L2 | Antrean lokal: ${this.#state.localQueue.length}`
+        : '[Network] Simulasi Internet: OFF | Gateway luring, tap baru akan disimpan ke antrean lokal',
+      online ? 'info' : 'error',
+    );
     return { flushed: online ? this.#flushQueue() : 0 };
   }
 
@@ -133,14 +170,32 @@ export class SimulationService {
     this.#assertInternet('Ping node');
     await this.#latency(600, 1200);
     this.#updateNode(roomId, { hardwareOnline: true, rssi: -64 });
+    sendToTerminal(`[Mesh] Ping Node Kamar ${roomId} berhasil | Keep-alive MQTT pulih | RSSI -64 dBm`, 'success');
     return { flushed: this.#flushQueue() };
   }
 
   // -------------------------------------------------------------- ledger
 
-  #nextBlock() {
+  /** Buat blok baru yang terhubung ke hash blok sebelumnya, dan log prosesnya ke terminal. */
+  #createBlock(reason) {
     const blockNumber = this.#state.ledger.blockNumber + 1;
+    const prevHash = this.#lastBlockHash;
+    const timestamp = Date.now();
+    const nonce = Math.floor(Math.random() * 100_000);
+
+    sendToTerminal(
+      `[Blockchain] Hashing Block #${blockNumber} (${reason}) | PrevHash: ${shortHash(prevHash)} | Timestamp: ${timestamp} | Nonce: ${nonce}`,
+      'hashing',
+    );
+
+    const hash = generateTxHash();
+    this.#lastBlockHash = hash;
     this.#update((s) => ({ ledger: { ...s.ledger, blockNumber } }));
+
+    sendToTerminal(
+      `[Blockchain] Create Block #${blockNumber} | PrevHash: ${shortHash(prevHash)} | Timestamp: ${timestamp} | Nonce: ${nonce} | New Hash: ${shortHash(hash)} | Status: SUCCESS`,
+      'block',
+    );
     return blockNumber;
   }
 
@@ -156,8 +211,12 @@ export class SimulationService {
       method: event.method,
       syncMode,
       txHash: generateTxHash(),
-      blockNumber: this.#nextBlock(),
+      blockNumber: this.#createBlock(`Akses Kamar ${event.roomId}`),
     };
+    sendToTerminal(
+      `[Ledger] Akses tercatat | Kamar ${entry.roomId} | ${entry.name} | ${DIRECTION_LABEL[entry.direction]} | ${entry.method.toUpperCase()} | Mode: ${syncMode === 'offline' ? 'SUSULAN LURING' : 'REAL-TIME'} | Tx: ${shortHash(entry.txHash)}`,
+      'success',
+    );
     this.#update((s) => {
       const node = s.nodes[event.roomId];
       const isNewer = !node.lastAccess || node.lastAccess.at <= event.eventAt;
@@ -183,6 +242,10 @@ export class SimulationService {
       reason: this.#state.internetOnline ? 'node' : 'internet',
     };
     this.#update((s) => ({ localQueue: [...s.localQueue, queued] }));
+    sendToTerminal(
+      `[Queue] ${queued.reason === 'internet' ? 'Internet OFF' : `Node Kamar ${queued.roomId} luring`}. Tap ${queued.name} (${DIRECTION_LABEL[queued.direction]}) disimpan ke antrean lokal LittleFS | Total antrean: ${this.#state.localQueue.length}`,
+      'queue',
+    );
     return { queued: true, entry: queued };
   }
 
@@ -190,21 +253,33 @@ export class SimulationService {
   #flushQueue() {
     const ready = this.#state.localQueue.filter((e) => this.#isReachable(e.roomId));
     if (ready.length === 0) return 0;
+    sendToTerminal(`[Sync] Koneksi pulih. Mengirim ${ready.length} antrean log luring ke Blockchain...`, 'process');
     const readyIds = new Set(ready.map((e) => e.id));
     this.#update((s) => ({ localQueue: s.localQueue.filter((e) => !readyIds.has(e.id)) }));
     ready.forEach((event) => this.#commit(event, 'offline'));
     this.#update((s) => ({ ledger: { ...s.ledger, lastFlush: { count: ready.length, at: Date.now() } } }));
+    sendToTerminal(
+      `[Sync] Sinkronisasi selesai | ${ready.length} log susulan tercatat on-chain | Sisa antrean: ${this.#state.localQueue.length}`,
+      'success',
+    );
     return ready.length;
   }
 
   // --------------------------------------------------------------- doors
 
   async unlockDoor(roomId) {
-    this.#assertRoom(roomId);
-    this.#assertReachable(roomId);
-    await this.#latency();
-    this.#assertReachable(roomId);
+    sendToTerminal(`[Door] Perintah Buka Pintu Jarak Jauh Kamar ${roomId} oleh ${DASHBOARD_OPERATOR.name} via MQTT TLS...`, 'process');
+    try {
+      this.#assertRoom(roomId);
+      this.#assertReachable(roomId);
+      await this.#latency();
+      this.#assertReachable(roomId);
+    } catch (error) {
+      sendToTerminal(`[Door] Buka Pintu Kamar ${roomId} DITOLAK | ${error.code}: ${error.message}`, 'error');
+      throw error;
+    }
 
+    sendToTerminal(`[Door] Kamar ${roomId}: Memverifikasi Hash... Akses Diberikan. Memulai pembuatan blok...`, 'hashing');
     this.#updateNode(roomId, { lockState: 'unlocked' });
     const { entry } = this.#recordAccess({
       roomId,
@@ -212,7 +287,11 @@ export class SimulationService {
       direction: 'in',
       method: 'remote',
     });
-    this.#later(() => this.#updateNode(roomId, { lockState: 'locked' }), AUTO_RELOCK_MS);
+    sendToTerminal(`[Door] Solenoid Kamar ${roomId} TERBUKA | Auto-relock dalam ${AUTO_RELOCK_MS / 1000} detik`, 'success');
+    this.#later(() => {
+      this.#updateNode(roomId, { lockState: 'locked' });
+      sendToTerminal(`[Door] Solenoid Kamar ${roomId} terkunci otomatis (auto-relock)`, 'info');
+    }, AUTO_RELOCK_MS);
     return { txHash: entry.txHash };
   }
 
@@ -227,6 +306,10 @@ export class SimulationService {
     const node = this.#state.nodes[roomId];
     const direction = node.presence === 'inside' ? 'out' : 'in';
     this.#updateNode(roomId, { presence: direction === 'in' ? 'inside' : 'outside' });
+    sendToTerminal(
+      `[NFC] Tap kartu Kamar ${roomId} (${holder.name}) | UID Hash: ${shortHash(holder.uidHash)} | Memverifikasi Hash di whitelist lokal... Akses Diberikan`,
+      'hashing',
+    );
     const { queued } = this.#recordAccess({ roomId, name: holder.name, direction, method: 'nfc' });
     return { queued };
   }
@@ -260,8 +343,10 @@ export class SimulationService {
    */
   waitForCardTap({ timeoutMs, signal }) {
     if (this.#pendingTap) {
+      sendToTerminal('[NFC] Reader sibuk: sesi pendaftaran lain masih menunggu kartu', 'error');
       return Promise.reject(new ServiceError('BUSY', 'Reader sedang menunggu kartu lain.'));
     }
+    sendToTerminal(`[NFC] Memulai sesi NFC... Menunggu tap fisik (batas ${Math.round(timeoutMs / 1000)} detik, reader USB ESP32 COM4)`, 'process');
     return new Promise((resolve, reject) => {
       const cleanup = () => {
         clearTimeout(timer);
@@ -271,10 +356,12 @@ export class SimulationService {
       };
       const onAbort = () => {
         cleanup();
+        sendToTerminal('[NFC] Sesi NFC dibatalkan oleh admin', 'info');
         reject(new ServiceError('ABORTED', 'Pendaftaran dibatalkan.'));
       };
       const timer = setTimeout(() => {
         cleanup();
+        sendToTerminal('[NFC] Sesi NFC TIMEOUT: tidak ada kartu terdeteksi dalam batas waktu', 'error');
         reject(new ServiceError('TIMEOUT', 'Tidak ada kartu terdeteksi dalam batas waktu.'));
       }, timeoutMs);
       this.#timers.add(timer);
@@ -298,11 +385,22 @@ export class SimulationService {
   /** Tombol "Simulasikan Tap Sukses": kirim UID acak ke penunggu reader. */
   simulateCardTap() {
     if (!this.#pendingTap) return false;
-    this.#pendingTap.resolve({ uid: generateCardUid() });
+    const uid = generateCardUid();
+    sendToTerminal(`[NFC] Kartu MIFARE terdeteksi di reader | UID: ${uid}`, 'info');
+    this.#pendingTap.resolve({ uid });
     return true;
   }
 
   async registerCredential(payload, uid) {
+    try {
+      return await this.#registerCredential(payload, uid);
+    } catch (error) {
+      sendToTerminal(`[NFC] Pendaftaran kartu GAGAL | ${error.code ?? 'ERROR'}: ${error.message}`, 'error');
+      throw error;
+    }
+  }
+
+  async #registerCredential(payload, uid) {
     // Validasi ulang di batas service: jangan percaya data dari UI.
     const clean = {
       name: sanitizeName(payload.name),
@@ -328,7 +426,10 @@ export class SimulationService {
       throw new ServiceError('DUPLICATE_UID', 'Kartu ini sudah terdaftar pada kredensial aktif lain.');
     }
 
+    sendToTerminal(`[NFC] Hashing UID kartu dengan SHA-256 untuk ${clean.name} (Kamar ${clean.roomId})...`, 'hashing');
     const uidHash = await sha256Hex(uid);
+    sendToTerminal(`[NFC] NFC UID ${shortHash(uidHash)} berhasil disimpan ke LittleFS`, 'success');
+    sendToTerminal('[Credential] Menulis kredensial ke smart contract Polygon L2...', 'process');
     await this.#latency(900, 1600);
     this.#assertInternet('Pendaftaran kartu');
 
@@ -341,20 +442,31 @@ export class SimulationService {
       registeredAt: Date.now(),
       txHash: generateTxHash(),
     };
-    this.#nextBlock();
+    this.#createBlock(`Registrasi Kartu Kamar ${clean.roomId}`);
     this.#update((s) => ({ credentials: [credential, ...s.credentials] }));
+    sendToTerminal(
+      `[Credential] Kartu aktif | ${credential.name} | Kamar ${credential.roomId} | ${ROLES[credential.role].label} | UID Hash: ${shortHash(uidHash)} | Tx: ${shortHash(credential.txHash)}`,
+      'success',
+    );
     return credential;
   }
 
   async revokeCredential(credentialId) {
     const target = this.#state.credentials.find((c) => c.id === credentialId);
-    if (!target) throw new ServiceError('NOT_FOUND', 'Kredensial tidak ditemukan.');
-    this.#assertInternet('Pencabutan akses');
-    await this.#latency(700, 1300);
-    this.#assertInternet('Pencabutan akses');
+    try {
+      if (!target) throw new ServiceError('NOT_FOUND', 'Kredensial tidak ditemukan.');
+      sendToTerminal(`[Credential] Mencabut akses ${target.name} (Kamar ${target.roomId}) dari whitelist & smart contract...`, 'process');
+      this.#assertInternet('Pencabutan akses');
+      await this.#latency(700, 1300);
+      this.#assertInternet('Pencabutan akses');
+    } catch (error) {
+      sendToTerminal(`[Credential] Pencabutan akses GAGAL | ${error.code}: ${error.message}`, 'error');
+      throw error;
+    }
 
     const txHash = generateTxHash();
-    this.#nextBlock();
+    this.#createBlock(`Revoke Kartu Kamar ${target.roomId}`);
+    sendToTerminal(`[Credential] Akses ${target.name} DICABUT | Tx: ${shortHash(txHash)}`, 'success');
     this.#update((s) => ({
       credentials: s.credentials.map((c) =>
         c.id === credentialId ? { ...c, status: 'revoked', revokedAt: Date.now(), revokeTxHash: txHash } : c,
